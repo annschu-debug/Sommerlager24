@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Raleway:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bona+Nova+SC&display=swap">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('Bild6.jpg');
+            /* Pfad zu deinem Hintergrundbild */
+            background-size: cover;
+            background-position: center;
+            color: black;
+            text-align: center;
+        }
+        
+        .styled-button-klein {
+            background-color: #073b1f;
+            /* Hintergrundfarbe */
+            border: none;
+            /* Kein Rand */
+            color: white;
+            /* Textfarbe */
+            padding: 5px 20px;
+            /* Innenabstand */
+            text-align: center;
+            /* Textzentrierung */
+            text-decoration: none;
+            /* Kein Unterstrich */
+            display: inline-block;
+            /* Inline-Block-Element */
+            font-size: 8px;
+            /* Schriftgröße */
+            font-family: 'Bona Nova SC', sans-serif;
+            margin: 4px 2px;
+            /* Außenabstand */
+            cursor: pointer;
+            /* Zeiger als Cursor */
+            border-radius: 12px;
+            /* Abgerundete Ecken */
+        }
+        
+        .styled-button {
+            background-color: #7eeca2;
+            /* Hintergrundfarbe */
+            border: none;
+            /* Kein Rand */
+            color: rgb(5, 36, 14);
+            /* Textfarbe */
+            padding: 30px 60px;
+            /* Innenabstand */
+            text-align: center;
+            /* Textzentrierung */
+            text-decoration: none;
+            /* Kein Unterstrich */
+            display: inline-block;
+            /* Inline-Block-Element */
+            font-size: 50px;
+            /* Schriftgröße */
+            font-weight: bold;
+            font-family: 'Bona Nova SC', sans-serif;
+            margin: 10px;
+            /* Außenabstand */
+            cursor: pointer;
+            /* Zeiger als Cursor */
+            border-radius: 10px;
+            /* Abgerundete Ecken */
+            transition: background-color 0.3s ease;
+        }
+        
+        .styled-button:hover {
+            background-color: #0056b3;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .hidden2 {
+            display: none;
+        }
+        
+        .message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 55px;
+            text-align: center;
+            padding: 30px;
+            background-color: Green;
+            border: 2px solid #000;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            font-family: 'Bona Nova SC', sans-serif;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .message2 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 48px;
+            text-align: center;
+            padding: 20px;
+            background-color: rgb(234, 12, 12);
+            border: 2px solid #000;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            font-family: 'Bona Nova SC', sans-serif;
+            color: blackred;
+            font-weight: bold;
+        }
+        
+        .message {}
+        
+        .message2 {}
+        
+        .bold-text {
+            font-size: 70px;
+            color: rgb(191, 237, 204);
+            font-family: 'Bona Nova SC', sans-serif;
+            font-weight: bold;
+            text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+    <div>
+        <button class="styled-button-klein" onclick="Gruppe1()">Neustart</button>
+        <script>
+            function Gruppe1() {
+                window.location.href = 'Gruppe1.html';
+            }
+        </script>
+
+        <button class="styled-button-klein" onclick="Zurück()">Zurück</button>
+        <script>
+            function Zurück() {
+                window.location.href = 'index.html';
+            }
+        </script>
+    </div>
+
+    <div>
+        <p class="bold-text">Habt ihr den richtigen Code?</p>
+
+    </div>
+
+    <div>
+        <button class="styled-button" id="0">0</button>
+        <button class="styled-button" id="1">1</button>
+    </div>
+
+    <div id="message" class="message hidden">Geschafft!</div>
+    <div id="message2" class="message2 hidden2">Das ist nicht der richtige Code.</div>
+
+    <script>
+        // JavaScript für die Button-Challenge
+
+        // Vorgesehene Klicksequenz
+        const sequence = ['0', '1', '1', '0', '1'];
+        let currentStep = 0;
+        let totalClicks = 0;
+
+
+        // Funktion, die ausgeführt wird, wenn ein Button geklickt wird
+        function buttonClicked(event) {
+            const buttonId = event.target.id;
+            totalClicks++; // Gesamtzahl der Klicks erhöhen
+
+            // Überprüfen, ob der geklickte Button der erwartete Button in der Sequenz ist
+            if (buttonId === sequence[currentStep]) {
+                currentStep++; // Nächsten Schritt vorbereiten
+
+            } else {
+                // Bei falschem Klick die Sequenz zurücksetzen
+                currentStep = 0;
+            }
+            // Überprüfen, ob die Gesamtzahl der Klicks 5 erreicht hat
+            if (totalClicks >= 5) {
+                if (currentStep === sequence.length) {
+                    document.getElementById('message').classList.remove('hidden');
+                } else {
+                    document.getElementById('message2').classList.remove('hidden2');
+
+                    // Nach 3 Sekunden die Fehlermeldung ausblenden
+                    setTimeout(() => {
+                        document.getElementById('message2').classList.add('hidden2');
+                    }, 3000);
+                }
+                // Klickzähler und aktuelle Sequenz zurücksetzen
+                totalClicks = 0;
+                currentStep = 0;
+            }
+        }
+
+        // Event-Listener zu beiden Buttons hinzufügen
+        document.getElementById('0').addEventListener('click', buttonClicked);
+        document.getElementById('1').addEventListener('click', buttonClicked);
+    </script>
+
+</body>
+
+</html>
